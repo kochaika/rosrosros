@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  diagnostic_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -133,8 +134,9 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
- add_executable(pub_node src/pub.cpp)
- add_executable(sub_node src/sub.cpp)
+ add_executable(reader src/reader.cpp)
+ add_executable(adder src/adder.cpp)
+ add_executable(writer src/writer.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -147,10 +149,15 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(pub_node
+ target_link_libraries(reader
    ${catkin_LIBRARIES}
  )
- target_link_libraries(sub_node
+
+ target_link_libraries(adder
+   ${catkin_LIBRARIES}
+ )
+
+ target_link_libraries(writer
    ${catkin_LIBRARIES}
  )
 
